@@ -1,0 +1,189 @@
+{
+  "name": "n8n",
+  "description": "n8n - Secure Workflow Automation for Technical Teams. A workflow automation platform that gives technical teams the flexibility of code with the speed of no-code. With 400+ integrations, native AI capabilities, and a fair-code license.",
+  "keywords": [
+    "automation",
+    "workflow",
+    "nocode",
+    "lowcode",
+    "n8n",
+    "integration",
+    "webhook",
+    "api",
+    "ai",
+    "langchain",
+    "community"
+  ],
+  "website": "https://n8n.io",
+  "repository": "https://github.com/n8n-io/n8n",
+  "logo": "https://n8n.io/favicon.ico",
+  "success_url": "/",
+  "stack": "heroku-22",
+  "buildpacks": [
+    {
+      "url": "heroku/nodejs"
+    }
+  ],
+  "engines": {
+    "node": "22.x",
+    "npm": ">=10.16.0"
+  },
+  "formation": {
+    "web": {
+      "quantity": 1,
+      "size": "basic"
+    }
+  },
+  "addons": [
+    {
+      "plan": "heroku-postgresql:essential-0",
+      "options": {
+        "version": "15"
+      }
+    }
+  ],
+  "env": {
+    "NODE_ENV": {
+      "description": "Node.js environment (production for optimal performance)",
+      "value": "production"
+    },
+    "N8N_PROTOCOL": {
+      "description": "Protocol for n8n (use https for production)",
+      "value": "https"
+    },
+    "N8N_PORT": {
+      "description": "Port for n8n to bind to",
+      "value": "5678"
+    },
+    "N8N_HOST": {
+      "description": "Host domain name. Automatically set to your Heroku app domain.",
+      "required": false
+    },
+    "N8N_EDITOR_BASE_URL": {
+      "description": "Public URL where n8n editor is accessible. Automatically set to your Heroku app URL.",
+      "required": false
+    },
+    "WEBHOOK_URL": {
+      "description": "Webhook URL for external services. Automatically set to your Heroku app URL.",
+      "required": false
+    },
+    "N8N_ENCRYPTION_KEY": {
+      "description": "Encryption key for securing credentials and sensitive data. CRITICAL: Store this securely - all credentials will be lost if changed.",
+      "generator": "secret"
+    },
+    "DB_TYPE": {
+      "description": "Database type to use",
+      "value": "postgresdb"
+    },
+    "DB_POSTGRESDB_DATABASE": {
+      "description": "PostgreSQL database name. Automatically configured by Heroku PostgreSQL addon.",
+      "required": false
+    },
+    "DB_POSTGRESDB_HOST": {
+      "description": "PostgreSQL host. Automatically configured by Heroku PostgreSQL addon.",
+      "required": false
+    },
+    "DB_POSTGRESDB_PORT": {
+      "description": "PostgreSQL port. Automatically configured by Heroku PostgreSQL addon.",
+      "required": false
+    },
+    "DB_POSTGRESDB_USER": {
+      "description": "PostgreSQL user. Automatically configured by Heroku PostgreSQL addon.",
+      "required": false
+    },
+    "DB_POSTGRESDB_PASSWORD": {
+      "description": "PostgreSQL password. Automatically configured by Heroku PostgreSQL addon.",
+      "required": false
+    },
+    "DB_POSTGRESDB_SSL_ENABLED": {
+      "description": "Enable SSL for PostgreSQL connection (required for Heroku Postgres)",
+      "value": "true"
+    },
+    "DB_POSTGRESDB_SSL_REJECT_UNAUTHORIZED": {
+      "description": "Whether to reject unauthorized SSL connections",
+      "value": "false"
+    },
+    "N8N_COMMUNITY_PACKAGES_ENABLED": {
+      "description": "Enable community packages (nodes) installation and management",
+      "value": "true"
+    },
+    "N8N_REINSTALL_MISSING_PACKAGES": {
+      "description": "Whether to reinstall any missing community packages on startup",
+      "value": "true"
+    },
+    "N8N_UNVERIFIED_PACKAGES_ENABLED": {
+      "description": "Allow installation of unverified community packages",
+      "value": "true"
+    },
+    "N8N_VERIFIED_PACKAGES_ENABLED": {
+      "description": "Enable verified community packages suggestions",
+      "value": "true"
+    },
+    "N8N_AI_ENABLED": {
+      "description": "Enable AI features and workflows including LangChain support",
+      "value": "true"
+    },
+    "N8N_PYTHON_ENABLED": {
+      "description": "Enable Python execution in Code node for advanced AI workflows",
+      "value": "true"
+    },
+    "GENERIC_TIMEZONE": {
+      "description": "Default timezone for the n8n instance",
+      "value": "UTC"
+    },
+    "N8N_DEFAULT_LOCALE": {
+      "description": "Default locale for the UI",
+      "value": "en"
+    },
+    "N8N_METRICS": {
+      "description": "Enable metrics collection",
+      "value": "false"
+    },
+    "N8N_DIAGNOSTICS_ENABLED": {
+      "description": "Enable diagnostics (recommended for troubleshooting)",
+      "value": "true"
+    },
+    "EXECUTIONS_DATA_PRUNE": {
+      "description": "Delete execution data after specified time to manage database size",
+      "value": "true"
+    },
+    "EXECUTIONS_DATA_MAX_AGE": {
+      "description": "Max age in hours for execution data (336 = 14 days)",
+      "value": "336"
+    },
+    "N8N_LOG_LEVEL": {
+      "description": "Log level for debugging and monitoring",
+      "value": "info"
+    },
+    "N8N_LOG_OUTPUT": {
+      "description": "Log output method",
+      "value": "console"
+    }
+  },
+  "scripts": {
+    "postdeploy": "echo 'n8n is starting up. Please wait a few moments for the service to be fully available.'"
+  },
+  "environments": {
+    "test": {
+      "addons": [
+        "heroku-postgresql:essential-0"
+      ]
+    },
+    "staging": {
+      "addons": [
+        "heroku-postgresql:essential-0"
+      ]
+    },
+    "production": {
+      "addons": [
+        "heroku-postgresql:standard-0"
+      ],
+      "formation": {
+        "web": {
+          "quantity": 1,
+          "size": "standard-1x"
+        }
+      }
+    }
+  }
+}
