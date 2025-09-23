@@ -1,0 +1,1 @@
+web: cd packages/cli && chmod +x ../../start-heroku.sh && ../../start-heroku.sh
