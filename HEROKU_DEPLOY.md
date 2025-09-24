@@ -1,6 +1,6 @@
 # Deploying n8n to Heroku
 
-This repository includes a one-click deployment configuration for Heroku with PostgreSQL 15+ support, community nodes, and AI features enabled.
+This repository includes a one-click deployment configuration for Heroku with PostgreSQL 15+ support, community nodes, AI features, and DigitalOcean Spaces integration for persistent storage.
 
 ## Quick Deploy
 
@@ -12,6 +12,7 @@ This repository includes a one-click deployment configuration for Heroku with Po
 ✅ **Community Nodes** - Pre-configured to install and manage community packages
 ✅ **AI Features** - LangChain and AI workflow capabilities enabled
 ✅ **Python Support** - Python execution in Code nodes for advanced workflows
+✅ **DigitalOcean Spaces Integration** - Persistent binary data storage to prevent file loss on dyno restarts
 ✅ **Production Ready** - Optimized configuration for Heroku deployment
 
 ## Manual Deployment
@@ -34,6 +35,14 @@ If you prefer to deploy manually:
    heroku config:set NODE_ENV=production
    heroku config:set N8N_COMMUNITY_PACKAGES_ENABLED=true
    heroku config:set N8N_AI_ENABLED=true
+   
+   # DigitalOcean Spaces configuration (replace with your values)
+   heroku config:set N8N_DEFAULT_BINARY_DATA_MODE=s3
+   heroku config:set N8N_EXTERNAL_STORAGE_S3_HOST=nyc3.digitaloceanspaces.com
+   heroku config:set N8N_EXTERNAL_STORAGE_S3_BUCKET_NAME=your-bucket-name
+   heroku config:set N8N_EXTERNAL_STORAGE_S3_ACCESS_KEY=your-access-key
+   heroku config:set N8N_EXTERNAL_STORAGE_S3_ACCESS_SECRET=your-secret-key
+   heroku config:set N8N_EXTERNAL_STORAGE_S3_BUCKET_REGION=nyc3
    ```
 
 4. **Deploy:**
@@ -50,10 +59,39 @@ The deployment automatically configures essential environment variables. Key var
 - `N8N_COMMUNITY_PACKAGES_ENABLED=true` - Enables community nodes
 - `N8N_AI_ENABLED=true` - Enables AI features and LangChain support
 - `N8N_PYTHON_ENABLED=true` - Enables Python in Code nodes
+- `N8N_DEFAULT_BINARY_DATA_MODE=s3` - Enables persistent storage via DigitalOcean Spaces
+- DigitalOcean Spaces configuration for persistent binary data storage
 
 ## PostgreSQL Version Compatibility
 
 This configuration uses PostgreSQL 15 by default, which is fully supported by Heroku. The database connection is automatically configured from Heroku's `DATABASE_URL` environment variable.
+
+## DigitalOcean Spaces Configuration
+
+The deployment includes built-in support for DigitalOcean Spaces to provide persistent binary data storage. This prevents file loss when Heroku dynos restart (which happens at least once daily).
+
+### Required Configuration
+
+During deployment, you'll need to provide:
+
+1. **DigitalOcean Spaces Credentials:**
+   - Create a DigitalOcean Spaces bucket in your preferred region
+   - Generate API keys from DigitalOcean > API > Spaces Keys
+   - Note your bucket name and region
+
+2. **Environment Variables (automatically prompted during deployment):**
+   - `N8N_EXTERNAL_STORAGE_S3_HOST` - Endpoint URL (e.g., `nyc3.digitaloceanspaces.com`)
+   - `N8N_EXTERNAL_STORAGE_S3_BUCKET_NAME` - Your bucket name
+   - `N8N_EXTERNAL_STORAGE_S3_ACCESS_KEY` - Spaces access key
+   - `N8N_EXTERNAL_STORAGE_S3_ACCESS_SECRET` - Spaces secret key
+   - `N8N_EXTERNAL_STORAGE_S3_BUCKET_REGION` - Region (e.g., `nyc3`)
+
+### Benefits
+
+- **File Persistence:** Binary data, uploaded files, and workflow attachments survive dyno restarts
+- **Scalability:** No storage limits imposed by Heroku's ephemeral filesystem
+- **Cost-Effective:** DigitalOcean Spaces pricing is competitive for file storage
+- **S3 Compatible:** Uses standard S3 API for reliability and performance
 
 ## Community Nodes
 

@@ -157,6 +157,31 @@
     "N8N_LOG_OUTPUT": {
       "description": "Log output method",
       "value": "console"
+    },
+    "N8N_DEFAULT_BINARY_DATA_MODE": {
+      "description": "Binary data storage mode. Set to 's3' to enable persistent storage via DigitalOcean Spaces/S3-compatible storage, preventing data loss on Heroku dyno restarts.",
+      "value": "s3",
+      "required": false
+    },
+    "N8N_EXTERNAL_STORAGE_S3_HOST": {
+      "description": "DigitalOcean Spaces endpoint URL (e.g., 'nyc3.digitaloceanspaces.com' for NYC3 region). Required for persistent binary data storage on Heroku to prevent file loss during dyno restarts.",
+      "required": true
+    },
+    "N8N_EXTERNAL_STORAGE_S3_BUCKET_NAME": {
+      "description": "DigitalOcean Spaces bucket name for storing n8n binary data and files. Create a bucket in your DigitalOcean Spaces dashboard before deployment.",
+      "required": true
+    },
+    "N8N_EXTERNAL_STORAGE_S3_ACCESS_KEY": {
+      "description": "DigitalOcean Spaces access key ID. Generate this from the DigitalOcean API section under 'Spaces Keys'.",
+      "required": true
+    },
+    "N8N_EXTERNAL_STORAGE_S3_ACCESS_SECRET": {
+      "description": "DigitalOcean Spaces secret access key. Keep this secure and never share it publicly.",
+      "required": true
+    },
+    "N8N_EXTERNAL_STORAGE_S3_BUCKET_REGION": {
+      "description": "DigitalOcean Spaces region (e.g., 'nyc3', 'ams3', 'sgp1', 'sfo3'). Must match the region where your Spaces bucket was created.",
+      "required": true
     }
   },
   "scripts": {
