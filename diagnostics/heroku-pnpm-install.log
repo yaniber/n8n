@@ -1,0 +1,14 @@
+packages/@n8n/benchmark                  |  WARN  Unsupported engine: wanted: {"node":">=22.16"} (current: {"node":"v20.19.5","pnpm":"10.16.0"})
+ WARN  GET https://cdn.sheetjs.com/xlsx-0.20.2/xlsx-0.20.2.tgz error (ENOTFOUND). Will retry in 10 seconds. 2 retries left.
+ WARN  GET https://cdn.sheetjs.com/xlsx-0.20.2/xlsx-0.20.2.tgz error (ENOTFOUND). Will retry in 1 minute. 1 retries left.
+ ENOTFOUND  request to https://cdn.sheetjs.com/xlsx-0.20.2/xlsx-0.20.2.tgz failed, reason: getaddrinfo ENOTFOUND cdn.sheetjs.com
+
+FetchError: request to https://cdn.sheetjs.com/xlsx-0.20.2/xlsx-0.20.2.tgz failed, reason: getaddrinfo ENOTFOUND cdn.sheetjs.com
+    at ClientRequest.<anonymous> (/home/runner/.cache/node/corepack/v1/pnpm/10.16.0/dist/pnpm.cjs:41645:18)
+    at ClientRequest.emit (node:events:524:28)
+    at emitErrorEvent (node:_http_client:101:11)
+    at TLSSocket.socketErrorListener (node:_http_client:504:5)
+    at TLSSocket.emit (node:events:536:35)
+    at emitErrorNT (node:internal/streams/destroy:169:8)
+    at emitErrorCloseNT (node:internal/streams/destroy:128:3)
+    at process.processTicksAndRejections (node:internal/process/task_queues:82:21)
