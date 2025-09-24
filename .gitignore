@@ -27,6 +27,7 @@ build-storybook.log
 junit.xml
 test-results.json
 *.0x
+*.backup
 packages/testing/playwright/playwright-report
 packages/testing/playwright/test-results
 packages/testing/playwright/ms-playwright-cache
