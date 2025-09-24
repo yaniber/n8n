@@ -1,3 +1,9 @@
+// Allow npm usage on Heroku platform
+if (process.env.DYNO || process.env.HEROKU_APP_NAME) {
+	console.log('📦 Heroku deployment detected - allowing npm for initial installation');
+	process.exit(0);
+}
+
 const { npm_config_user_agent: UA } = process.env;
 const [packageManager] = (UA ?? '').split(' ');
 const [name, version] = packageManager.split('/');
