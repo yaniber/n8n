@@ -39,8 +39,7 @@
 		"types/**/*.ts",
 		"utils/**/*.ts",
 		"types/**/*.ts",
-		"../core/nodes-testing/**/*.ts",
-		"../../node_modules/jest-expect-message/types/index.d.ts"
+		"../core/nodes-testing/**/*.ts"
 	],
 	"references": [
 		{ "path": "../@n8n/imap/tsconfig.build.json" },
