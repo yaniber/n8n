@@ -35,6 +35,8 @@ If you prefer to deploy manually:
    heroku config:set NODE_ENV=production
    heroku config:set N8N_COMMUNITY_PACKAGES_ENABLED=true
    heroku config:set N8N_AI_ENABLED=true
+   # Keep dev dependencies available for build tooling like tsc-alias
+    heroku config:set NPM_CONFIG_PRODUCTION=false
    
    # DigitalOcean Spaces configuration (replace with your values)
    heroku config:set N8N_DEFAULT_BINARY_DATA_MODE=s3
@@ -112,6 +114,7 @@ For production use, consider:
 - Scaling to `standard-1x` or larger dyno sizes
 - Setting up proper monitoring and logging
 - Backing up your encryption key securely
+- Keeping `NPM_CONFIG_PRODUCTION=false` so build-time tools such as `tsc-alias` are available
 
 ## Support
 
