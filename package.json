@@ -48,7 +48,7 @@
     "watch": "turbo run watch --concurrency=30",
     "webhook": "./packages/cli/bin/n8n webhook",
     "worker": "./packages/cli/bin/n8n worker",
-    "heroku-postbuild": "echo 'Installing pnpm and building n8n...' && corepack enable && corepack prepare --activate && NPM_CONFIG_PRODUCTION=false pnpm install -w --no-frozen-lockfile && NPM_CONFIG_PRODUCTION=false pnpm install --no-frozen-lockfile && pnpm run build:deploy"
+    "heroku-postbuild": "echo 'Installing pnpm and building n8n...' && corepack enable && corepack prepare --activate && pnpm install -w --no-frozen-lockfile && pnpm install --no-frozen-lockfile && pnpm run build:deploy"
   },
   "dependencies": {
     "turbo": "^2.5.4"
