@@ -12,6 +12,7 @@
     "build": "turbo run build --filter=!@n8n/backend-test-utils --filter=!n8n-cypress --filter=!n8n-playwright",
     "build:n8n": "node scripts/build-n8n.mjs",
     "build:deploy": "node scripts/build-n8n.mjs",
+    "build:deploy:prod": "node scripts/build-n8n.mjs --tsconfig tsconfig.heroku.json",
     "build:docker": "node scripts/build-n8n.mjs && node scripts/dockerize-n8n.mjs",
     "build:docker:scan": "node scripts/build-n8n.mjs && node scripts/dockerize-n8n.mjs && node scripts/scan-n8n-image.mjs",
     "build:docker:test": "node scripts/build-n8n.mjs && node scripts/dockerize-n8n.mjs && turbo run test:container:standard --filter=n8n-playwright",
@@ -48,7 +49,7 @@
     "watch": "turbo run watch --concurrency=30",
     "webhook": "./packages/cli/bin/n8n webhook",
     "worker": "./packages/cli/bin/n8n worker",
-    "heroku-postbuild": "echo 'Installing pnpm and building n8n...' && corepack enable && corepack prepare --activate && NPM_CONFIG_PRODUCTION=false pnpm install -w --no-frozen-lockfile && NPM_CONFIG_PRODUCTION=false pnpm install --no-frozen-lockfile && pnpm run build:deploy"
+    "heroku-postbuild": "echo 'Installing pnpm and building n8n...' && corepack enable && corepack prepare --activate && NPM_CONFIG_PRODUCTION=false pnpm install -w --no-frozen-lockfile && NPM_CONFIG_PRODUCTION=false pnpm install --no-frozen-lockfile && pnpm run build:deploy:prod"
   },
   "dependencies": {
     "turbo": "^2.5.4"

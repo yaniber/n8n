@@ -1,0 +1,15 @@
+{
+	"extends": ["./tsconfig.build.cjs.json"],
+	"exclude": [
+		"node_modules",
+		"nodes/**/*.test.ts",
+		"nodes/**/*.spec.ts",
+		"credentials/**/*.test.ts",
+		"credentials/**/*.spec.ts",
+		"utils/**/*.test.ts",
+		"utils/**/*.spec.ts",
+		"test/**",
+		"**/__tests__/**",
+		"../core/nodes-testing"
+	]
+}

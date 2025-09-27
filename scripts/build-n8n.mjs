@@ -18,6 +18,16 @@ const isCI = process.env.CI === 'true';
 const excludeTestController =
 	process.env.CI === 'true' && process.env.INCLUDE_TEST_CONTROLLER !== 'true';
 
+// Parse command line arguments
+let tsconfigPath = null;
+const args = process.argv.slice(2);
+for (let i = 0; i < args.length; i++) {
+	if (args[i] === '--tsconfig' && i + 1 < args.length) {
+		tsconfigPath = args[i + 1];
+		i++; // Skip the next argument
+	}
+}
+
 // Disable verbose output and force color only if not in CI
 $.verbose = !isCI;
 process.env.FORCE_COLOR = isCI ? '0' : '1';
@@ -97,6 +107,11 @@ startTimer('package_build');
 
 echo(chalk.yellow('INFO: Running pnpm install and build...'));
 try {
+	if (tsconfigPath) {
+		// Set environment variable to indicate Heroku build mode
+		process.env.HEROKU_BUILD = 'true';
+		echo(chalk.yellow(`INFO: Using Heroku build mode (excluding test files)`));
+	}
 	const installProcess = $`cd ${config.rootDir} && pnpm install --frozen-lockfile`;
 	installProcess.pipe(process.stdout);
 	await installProcess;

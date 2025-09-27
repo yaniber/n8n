@@ -3,7 +3,7 @@
   "version": "0.58.0",
   "scripts": {
     "dev": "pnpm run storybook",
-    "build": "pnpm build:vite && pnpm build:bundle",
+    "build": "node -e \"if(process.env.HEROKU_BUILD){require('fs').renameSync('tsconfig.json','tsconfig.temp.json');require('fs').renameSync('tsconfig.heroku.json','tsconfig.json');}\" && pnpm build:vite && pnpm build:bundle && node -e \"if(process.env.HEROKU_BUILD){require('fs').renameSync('tsconfig.json','tsconfig.heroku.json');require('fs').renameSync('tsconfig.temp.json','tsconfig.json');}\"",
     "build:vite": "cross-env vite build",
     "build:bundle": "cross-env INCLUDE_VUE=true vite build",
     "preview": "vite preview",
