@@ -45,7 +45,9 @@
     "@types/lodash": "catalog:",
     "@types/luxon": "3.2.0",
     "@types/md5": "^2.3.5",
+  "@types/nock": "^11.1.0",
     "@types/xml2js": "catalog:",
+    "nock": "^13.5.5",
     "vitest": "catalog:",
     "vitest-mock-extended": "catalog:"
   },
