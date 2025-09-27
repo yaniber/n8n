@@ -55,6 +55,7 @@
     "@n8n/vitest-config": "workspace:*",
     "@vitejs/plugin-vue": "catalog:frontend",
     "@vitest/coverage-v8": "catalog:",
+    "cross-env": "^7.0.3",
     "unplugin-icons": "^0.19.0",
     "vite": "catalog:",
     "vitest": "catalog:",
