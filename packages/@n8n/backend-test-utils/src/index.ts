@@ -1,9 +1,11 @@
 import type { Logger } from '@n8n/backend-common';
-import { mock } from 'jest-mock-extended';
+import { mock, MockProxy } from 'jest-mock-extended';
 
-export const mockLogger = (): Logger => {
+export const mockLogger = (): MockProxy<Logger> & Logger => {
 	const logger = mock<Logger>();
-	logger.scoped.mockReturnValue(mock<Logger>());
+	const scopedLogger = mock<Logger>();
+	// Remplacer mockReturnValue par un setup explicite de la fonction
+	logger.scoped.mockImplementation(() => scopedLogger);
 	return logger;
 };
 
