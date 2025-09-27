@@ -3,7 +3,7 @@
   "version": "1.113.0",
   "private": true,
   "engines": {
-    "node": "20.x"
+    "node": "22.x"
   },
   "packageManager": "pnpm@10.16.0",
   "scripts": {
@@ -54,7 +54,8 @@
     "turbo": "^2.5.4"
   },
   "devDependencies": {
-    "tsc-alias": "^1.8.16"
+    "tsc-alias": "^1.8.16",
+    "typescript": "catalog:"
   },
   "pnpm": {
     "onlyBuiltDependencies": [
