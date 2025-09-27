@@ -2,10 +2,13 @@ import type { Logger } from '@n8n/backend-common';
 import { mock, MockProxy } from 'jest-mock-extended';
 
 export const mockLogger = (): MockProxy<Logger> & Logger => {
-	const logger = mock<Logger>();
 	const scopedLogger = mock<Logger>();
-	// Remplacer mockReturnValue par un setup explicite de la fonction
-	logger.scoped.mockImplementation(() => scopedLogger);
+	const logger = mock<Logger>();
+	
+	// Remplacer directement la fonction scoped par notre propre implémentation
+	// sans utiliser mockImplementation qui cause le problème de type
+	logger.scoped = (() => scopedLogger) as typeof logger.scoped;
+
 	return logger;
 };
 
