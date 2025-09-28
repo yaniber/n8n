@@ -4,6 +4,7 @@
 		"node_modules",
 		"nodes/**/*.test.ts",
 		"nodes/**/*.spec.ts",
+		"nodes/**/test/**",
 		"credentials/**/*.test.ts",
 		"credentials/**/*.spec.ts",
 		"utils/**/*.test.ts",
@@ -11,5 +12,9 @@
 		"test/**",
 		"**/__tests__/**",
 		"../core/nodes-testing"
-	]
+	],
+	"compilerOptions": {
+		"skipLibCheck": true,
+		"typeRoots": ["./types", "./node_modules/@types"]
+	}
 }

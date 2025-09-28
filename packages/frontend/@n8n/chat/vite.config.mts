@@ -14,6 +14,7 @@ const srcPath = resolve(__dirname, 'src');
 const packagesDir = resolve(__dirname, '..', '..', '..');
 
 const banner = `/*! Package version @n8n/chat@${pkg.version} */`;
+const isHeroku = process.env.HEROKU_BUILD === 'true';
 
 // https://vitejs.dev/config/
 export default mergeConfig(
@@ -24,7 +25,12 @@ export default mergeConfig(
 				compiler: 'vue3',
 				autoInstall: true,
 			}),
-			dts(),
+			dts({
+				// Sur Heroku, éviter de traiter les tests pour ne pas tirer les types jest
+				exclude: isHeroku
+					? ['**/*.spec.ts', '**/*.test.ts', '**/__tests__/**', 'src/__tests__/**']
+					: undefined,
+			}),
 			components({
 				dts: './src/components.d.ts',
 				resolvers: [
